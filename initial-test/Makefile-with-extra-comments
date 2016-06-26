@@ -1,0 +1,108 @@
+# default program
+all: bTree clean
+
+# for debuging info at the end
+withDebug: bTreeDebug clean
+
+# version that ignore repeted values
+elimineRepeat: bTreeElimineRepeat clean
+
+# debug info for ignore repeat version
+elimineRepeat-withDebug: bTreeElimineRepeatDebug clean
+
+# overriden rule for inverse input
+withDebug-elimineRepeat: elimineRepeat-withDebug
+
+
+# default functions
+bTree: main.o buildTree.o changeAdjacentNodes.o changeNodes.o findCommonNode.o findFirstNode.o findLastNode.o findMiddleNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+	gcc $(CFLAGS) -o bTree main.o buildTree.o changeAdjacentNodes.o changeNodes.o findCommonNode.o findFirstNode.o findLastNode.o findMiddleNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+
+# On the dependencies listing isn't necessary to put the subfunctions of actually used functions, but doing so don't affect the makefile. The make actually reads the rules of the dependant functions and verify if it's necessary to recompile any of their dependencies. A good practice is to ommite subdependencies on rules for .o objects for clarity about what functions this file actually uses. And add all the dependencies on rules for linking, actually you will need to write all the names for the linker.
+main.o: source/main.c include/binaryTree.h buildTree.o findCommonNode.o findFirstNode.o findLastNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o sortNodes.o
+	gcc $(CFLAGS) -c source/main.c -I ../include/binaryTree.h
+
+buildTree.o: source/buildTree.c include/binaryTree.h findMiddleNode.o
+	gcc $(CFLAGS) -c source/buildTree.c -I ../include/binaryTree.h
+
+changeAdjacentNodes.o: source/changeAdjacentNodes.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/changeAdjacentNodes.c -I ../include/binaryTree.h
+
+changeNodes.o: source/changeNodes.c include/binaryTree.h changeAdjacentNodes.o
+	gcc $(CFLAGS) -c source/changeNodes.c -I ../include/binaryTree.h
+
+findCommonNode.o: source/findCommonNode.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/findCommonNode.c -I ../include/binaryTree.h
+
+findFirstNode.o: source/findFirstNode.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/findFirstNode.c -I ../include/binaryTree.h
+
+findLastNode.o: source/findLastNode.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/findLastNode.c -I ../include/binaryTree.h
+
+findMiddleNode.o: source/findMiddleNode.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/findMiddleNode.c -I ../include/binaryTree.h
+
+findNodeWithValue.o: source/findNodeWithValue.c include/binaryTree.h findMiddleNode.o
+	gcc $(CFLAGS) -c source/findNodeWithValue.c -I ../include/binaryTree.h
+
+makeTree.o: source/makeTree.c include/binaryTree.h putAfterNextTokens.o stringCopyUntil.o
+	gcc $(CFLAGS) -c source/makeTree.c -I ../include/binaryTree.h
+
+printSyntax.o: source/printSyntax.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/printSyntax.c -I ../include/binaryTree.h
+
+printTheresNoNode.o: source/printTheresNoNode.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/printTheresNoNode.c -I ../include/binaryTree.h
+
+putAfterNextTokens.o: source/putAfterNextTokens.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/putAfterNextTokens.c -I ../include/binaryTree.h
+
+sortNodes.o: source/sortNodes.c include/binaryTree.h changeNodes.o findFirstNode.o findLastNode.o
+	gcc $(CFLAGS) -c source/sortNodes.c -I ../include/binaryTree.h
+
+stringCopyUntil.o: source/stringCopyUntil.c include/binaryTree.h
+	gcc $(CFLAGS) -c source/stringCopyUntil.c -I ../include/binaryTree.h
+
+
+# elimineRepeat version functions
+bTreeElimineRepeat: mainElimineRepeat.o buildTree.o changeAdjacentNodes.o changeNodes.o dropNode.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findMiddleNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+	gcc $(CFLAGS) -o bTreeElimineRepeat mainElimineRepeat.o buildTree.o changeAdjacentNodes.o changeNodes.o dropNode.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findMiddleNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+
+mainElimineRepeat.o: source/elimineRepeat/mainElimineRepeat.c include/binaryTree.h include/elimineRepeat.h buildTree.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findNodeWithValue.o makeTree.o printSyntax.o printTheresNoNode.o sortNodes.o
+	gcc $(CFLAGS) -c source/elimineRepeat/mainElimineRepeat.c -I ../../include/
+
+dropNode.o: source/elimineRepeat/dropNode.c include/binaryTree.h include/elimineRepeat.h
+	gcc $(CFLAGS) -c source/elimineRepeat/dropNode.c -I ../../include/
+
+elimineRepeatedNodes.o: source/elimineRepeat/elimineRepeatedNodes.c include/binaryTree.h include/elimineRepeat.h dropNode.o
+	gcc $(CFLAGS) -c source/elimineRepeat/elimineRepeatedNodes.c -I ../../include/
+
+
+# debug version functions
+bTreeDebug: mainDebug.o buildTree.o changeAdjacentNodes.o changeNodes.o findCommonNode.o findFirstNode.o findLastNode.o findLeafPointingTo.o findMiddleNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+	gcc $(CFLAGS) -o bTreeDebug mainDebug.o buildTree.o changeAdjacentNodes.o changeNodes.o findCommonNode.o findFirstNode.o findLastNode.o findLeafPointingTo.o findMiddleNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+
+mainDebug.o: source/debug/mainDebug.c include/binaryTree.h include/binaryTreeDebug.h buildTree.o findCommonNode.o findFirstNode.o findLastNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o sortNodes.o
+	gcc $(CFLAGS) -c source/debug/mainDebug.c -I ../../include/
+
+findLeafPointingTo.o: source/debug/findLeafPointingTo.c include/binaryTree.h include/binaryTreeDebug.h
+	gcc $(CFLAGS) -c source/debug/findLeafPointingTo.c -I ../../include/
+
+printNodes.o: source/debug/printNodes.c include/binaryTree.h include/binaryTreeDebug.h
+	gcc $(CFLAGS) -c source/debug/printNodes.c -I ../../include/
+
+printTree.o: source/debug/printTree.c include/binaryTree.h include/binaryTreeDebug.h findFirstNode.o findLeafPointingTo.o
+	gcc $(CFLAGS) -c source/debug/printTree.c -I ../../include/
+
+
+# elimineRepeat version with debug info
+bTreeElimineRepeatDebug: mainElimineRepeatDebug.o buildTree.o changeAdjacentNodes.o changeNodes.o dropNode.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findLeafPointingTo.o findMiddleNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+	gcc $(CFLAGS) -o bTreeElimineRepeatDebug mainElimineRepeatDebug.o buildTree.o changeAdjacentNodes.o changeNodes.o dropNode.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findLeafPointingTo.o findMiddleNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o putAfterNextTokens.o sortNodes.o stringCopyUntil.o
+
+mainElimineRepeatDebug.o: source/elimineRepeatDebug/mainElimineRepeatDebug.c include/binaryTree.h include/binaryTreeDebug.h include/elimineRepeat.h buildTree.o elimineRepeatedNodes.o findCommonNode.o findFirstNode.o findLastNode.o findNodeWithValue.o makeTree.o printNodes.o printSyntax.o printTheresNoNode.o printTree.o sortNodes.o
+	gcc $(CFLAGS) -c source/elimineRepeatDebug/mainElimineRepeatDebug.c -I ../../include/
+
+# clean rule, used for all versions
+clean:
+	rm -f *.o
