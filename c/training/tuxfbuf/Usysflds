@@ -1,0 +1,39 @@
+$#ifndef NOWHAT
+$static	char h_Usysflds[] = "@(#)tuxedo:include/Usysflds	42.2";
+$#endif
+$
+$/* #ident	"@(#)tuxedo:include/Usysflds	42.2" */
+$
+$/*	DEFINITIONS NEEDED BY USER APPLICATION PROGRAMS.
+$
+$	Warning: This file should not be changed in any
+$	way, doing so will destroy the compatibility with TUXEDO programs
+$	and libraries.
+$*/
+$/*	SYSTEM RESERVED FIELD ENTRIES	*/
+#NAME		ID	TYPE	FLAG	COMMENT
+#----		--	----	----	-------
+INITMSK		1	string	-	initial mask name for mio
+CURSID		2	long	-	field id of cursor
+CURSOC		3	long	-	occ no of cursor
+LEVKEY		4	string	-	function key used to leave form
+STATLIN		5	string	-	message to go on status line
+FORMNAM		6	string	-	form that is (to be) displayed
+UPDTMOD		7	short	-	method of packet refresh
+SRVCNM		8	string	-	service requested
+NEWFORM		9	string	-	indicates if formnam is significant
+CHGATTS		10	carray	-	contains chg_atts struct for dyn attribs
+USYS1FLD	11	string	-	general purpose system field
+USYS2FLD	12	string	-	general purpose system field
+USYS3FLD	13	string	-	general purpose system field
+USYS4FLD	14	carray	-	general purpose system field
+USYS5FLD	15	carray	-	general purpose system field
+USYS6FLD	16	carray	-	general purpose system field
+DESTSRVC	17	string	-	destination service
+MODS		18	carray	-	modified fields as struct track_mods
+VALONENTRY	19	string	-	validate a form upon entry
+#
+# fields used by BQ (Background Queuer) Service routine
+# reserve 10 fields for BQ
+*base 80
+BQCMD		1	string	-	command to be executed

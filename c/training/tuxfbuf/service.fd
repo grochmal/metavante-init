@@ -1,0 +1,23 @@
+# #(@) 06C8A1AA $Author: qa $
+# #(@) 06C8A1AA $DateTime: 2009/12/08 17:59:56 $
+# #(@) 06C8A1AA $Change: 78584 $
+# ------------------------ End of P4 stamps --------------------
+
+# JCN NMR010291 23/09/2003
+# Make sure that the file is only included once
+# Use the '$' to pass the static code through
+$#ifndef __SERVICE_FD
+$#define __SERVICE_FD
+
+*base 8000
+
+#name		relno	type	flags 	comment
+#----		-----	----	-----	-------
+SRVCNM		1	string	-	1 
+
+# MAX FIELD NUMBER = 191 (Last file, highest FD allowed=8191)
+
+# JCN NMR010291 23/09/2003
+# Make sure that the file is only included once
+# Use the '$' to pass the static code through
+$#endif

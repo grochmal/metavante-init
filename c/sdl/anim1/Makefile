@@ -1,0 +1,30 @@
+# Makefile
+
+TARGET = anim1
+OBJS = anim1.o
+INCLUDES = `sdl-config --cflags`
+LIBS = `sdl-config --libs` -lSDL_image-1.2
+
+
+CC = gcc
+CFLAGS = -fPIC -O2 -W -Wall -pedantic
+LDFLAGS =
+SHLIBFLAGS = -shared -Wl, -soname,
+
+
+all: $(TARGET)
+
+# $@ stands for the target to build.
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+
+# $< stands for the dependencies matched.
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
+
+.PHONY: clean
+
+clean:
+	rm $(OBJS)
+	rm $(TARGET)
+

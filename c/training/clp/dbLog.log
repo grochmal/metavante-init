@@ -1,0 +1,20 @@
+315764:20100426:12140045:??????:   clp.c:  83:-s: 00000000
+459030:20100426:12141337:??????:   clp.c:  83:-s: 00000000
+360552:20100426:12423936:??????:   clp.c:  83:-s: d
+323918:20100426:12434832:??????:   clp.c:  83:-s: d
+336158:20100426:12454848:??????:   clp.c:  83:-s: This string is not long
+94370:20100426:12474529:??????:   clp.c:  83:-s: This string is not long, but with this it becomes.
+233886:20100426:12512122:THECLP:   clp.c:  85:-s: This string is not long, but with this it becomes.
+373044:20100426:12521077:THECLP:   clp.c:  85:-s: This string is not long, but with this it becomes.
+307304:20100426:13062482:THECLP:   clp.c:  91:output: This string is not long, but with this it becomes.
+307304:20100426:13062482:THECLP:   clp.c:  93:output: w
+307304:20100426:13062482:THECLP:   clp.c:  95:output: 3
+307304:20100426:13062482:THECLP:   clp.c:  97:output: TRUE
+286842:20100426:13585934:THECLP:   clp.c:  91:output: This string is not long, but with this it becomes.
+286842:20100426:13585934:THECLP:   clp.c:  93:output: w
+286842:20100426:13585934:THECLP:   clp.c:  95:output: 3
+286842:20100426:13585934:THECLP:   clp.c:  97:output: TRUE
+327728:20100426:13593877:THECLP:   clp.c:  91:output: This string is not long, but with this it becomes.
+327728:20100426:13593877:THECLP:   clp.c:  93:output: w
+327728:20100426:13593877:THECLP:   clp.c:  95:output: 3
+327728:20100426:13593877:THECLP:   clp.c:  97:output: TRUE
